@@ -3,32 +3,44 @@ document.addEventListener("DOMContentLoaded", () => {
   let position = 50;
   squares[position].classList.add("dot");
 
-  let direction = 1;
-
-  function moveRigth() {
+  function moveRight() {
     squares[position].classList.remove("dot");
     position++;
+    position = checkPostion(position);
     squares[position].classList.add("dot");
   }
+
   function moveLeft() {
     squares[position].classList.remove("dot");
     position--;
+    position = checkPostion(position);
     squares[position].classList.add("dot");
   }
+
   function moveUp() {
     squares[position].classList.remove("dot");
     position = position - 10;
+    position = checkPostion(position);
     squares[position].classList.add("dot");
   }
+
   function moveDown() {
     squares[position].classList.remove("dot");
     position = position + 10;
+    position = checkPostion(position);
     squares[position].classList.add("dot");
+  }
+
+  function checkPostion(position) {
+    if (position >= squares.length) position = 0;
+    else if (position < 0) position = squares.length - 1;
+
+    return position;
   }
   function keys(e) {
     if (e.keyCode === 39) {
       // rigth arrow
-      moveRigth();
+      moveRight();
     } else if (e.keyCode === 38) {
       // up arrow
       moveUp();
